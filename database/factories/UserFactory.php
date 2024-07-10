@@ -24,10 +24,12 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'nombre' => fake()->name(),
+            'edad' => rand(12,74),
+            'dni' => $this->generarDNI(),
             'email' => fake()->unique()->safeEmail(),
+            'password'=> Hash::make(fake()->password),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
     }
@@ -41,4 +43,19 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    private function generarDNI(): string
+    {
+        // Generar un número aleatorio de 8 dígitos
+        $numero = mt_rand(10000000, 99999999);
+
+        // Calcular la letra de control
+        $letras = 'TRWAGMYFPDXBNJZSQVHLCKE';
+        $letra = $letras[$numero % 23];
+
+        // Concatenar el número y la letra
+        $dni = $numero . $letra;
+
+        return $dni;
+    } 
 }
