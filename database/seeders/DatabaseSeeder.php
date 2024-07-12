@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        //! Termianr
+        $this->call([UserSeeder::class, /* ClientesSeeder::class, ProductosSeeder::class */]);
         Usuario::factory(10)->create();
-
-        $this->call(UserSeeder::class);
     }
 }

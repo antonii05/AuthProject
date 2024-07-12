@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'dni' => '70918024P',
             'email' => 'antblajim@gmail.com',
             'password' => Hash::make(env('ADMIN_PASSWORD')),
+            'rol' => 1,
         ]);
     }
 }

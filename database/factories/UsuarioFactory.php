@@ -30,6 +30,7 @@ class UsuarioFactory extends Factory
             'password'=> Hash::make(fake()->password),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
+            'rol' => rand(1,6),
         ];
     }
 
