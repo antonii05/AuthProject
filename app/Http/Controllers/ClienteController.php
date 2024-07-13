@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -11,7 +12,13 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        return view("pages.ClientesView");
+        $clientes = Cliente::all();
+        $atributos = new Cliente();
+        return view("pages.ClientesView", [
+            'clientes' => $clientes,
+            'atributos' => $atributos->getAttributes(),
+            'ruta' => 'clientes'
+        ]);
     }
 
     /**

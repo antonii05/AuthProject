@@ -37,6 +37,18 @@ class Cliente extends Model
 		'activo' => 'bool'
 	];
 
+
+	//Se crearan para crear las tablas
+	protected $attributes = [
+		'id',
+		'nombre_fiscal',
+		'email',
+		'nif',
+		'pais',
+		'provincia',
+		'activo'
+	];
+
 	protected $hidden = [
 		'password'
 	];
