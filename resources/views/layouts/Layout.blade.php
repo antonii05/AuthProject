@@ -11,10 +11,8 @@
 
 <body>
 
+    @include('layouts.MenuComponent')
     <div class="container-fluid">
-
-        @include('layouts.MenuComponent')
-
         <div class="mx-5">
             @yield('body')
         </div>

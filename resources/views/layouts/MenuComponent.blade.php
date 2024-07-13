@@ -1,7 +1,7 @@
 <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Autentificacion</a>
+            <a class="navbar-brand me-4 ms-3" href="#">Autentificacion</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBar"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

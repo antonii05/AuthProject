@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre_pedido');
             $table->text('descripcion');
             $table->decimal('precio');
-            $table->integer('id_usaurio')->unsigned()->nullable();
+            $table->integer('id_usuario')->unsigned()->nullable();
             $table->integer('id_cliente')->unsigned()->nullable();
             $table->timestamps();
         });

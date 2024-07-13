@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,6 +26,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Producto extends Model
 {
+
+	use HasFactory;
+
 	protected $table = 'productos';
 
 	protected $casts = [
