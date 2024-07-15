@@ -13,10 +13,10 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::all();
-        $atributos = new Cliente();
+        $atributos = Cliente::getAtributos();
         return view("pages.ClientesView", [
             'clientes' => $clientes,
-            'atributos' => $atributos->getAttributes(),
+            'atributos' => $atributos,
             'ruta' => 'clientes'
         ]);
     }
@@ -34,7 +34,7 @@ class ClienteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Cliente::findOrFail($id);
     }
 
     /**

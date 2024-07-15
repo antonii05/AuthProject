@@ -30,23 +30,11 @@ class Cliente extends Model
 {
 
 	use HasFactory;
-	
+
 	protected $table = 'clientes';
 
 	protected $casts = [
 		'activo' => 'bool'
-	];
-
-
-	//Se crearan para crear las tablas
-	protected $attributes = [
-		'id',
-		'nombre_fiscal',
-		'email',
-		'nif',
-		'pais',
-		'provincia',
-		'activo'
 	];
 
 	protected $hidden = [
@@ -62,4 +50,17 @@ class Cliente extends Model
 		'provincia',
 		'activo'
 	];
+
+	public static function getAtributos()
+	{
+		return [
+			'id',
+			'nombre_fiscal',
+			'email',
+			'nif',
+			'pais',
+			'provincia',
+			'activo'
+		];
+	}
 }

@@ -13,7 +13,12 @@ class UserController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
-        return view("pages.UserView",['usuarios' => $usuarios]);
+        $modelo = Usuario::getAtributos();
+        return view("pages.UserView", [
+            'usuarios' => $usuarios,
+            'atributos' => $modelo,
+            'ruta' => 'usuarios',
+        ]);
     }
 
     /**

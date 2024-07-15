@@ -53,4 +53,15 @@ class Usuario extends Model
 		'rol',
 		'remember_token'
 	];
+	public static function getAtributos(): array
+	{
+		return [
+			'id',
+			'nombre',
+			'edad',
+			'dni',
+			'email',
+			'rol',
+		];
+	}
 }

@@ -44,4 +44,14 @@ class Producto extends Model
 		'id_usaurio',
 		'id_cliente'
 	];
+
+	public static function getAtributos(): array
+	{
+		return [
+			'id',
+			'nombre_pedido',
+			'descripcion',
+			'precio',
+		];
+	}
 }

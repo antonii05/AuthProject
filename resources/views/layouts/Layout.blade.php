@@ -10,8 +10,9 @@
 </head>
 
 <body>
-
-    @include('layouts.MenuComponent')
+    @if ($hasMenu == true)
+        <x-menu-component />
+    @endif
     <div class="container-fluid">
         <div class="mx-5">
             @yield('body')
