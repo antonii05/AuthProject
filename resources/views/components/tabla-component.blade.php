@@ -1,9 +1,9 @@
 <div id="tabla">
     @forelse ($modelos as $modelo)
         @if ($loop->first)
-            <table class="table table-bordered table-striped table-info shadow-lg">
+            <table class="table table-bordered table-striped shadow-lg">
                 <thead>
-                    <tr class="text-uppercase text-center">
+                    <tr class="text-uppercase text-center table-dark">
                         @foreach ($atributos as $atributo)
                             <th class="text-center text-uppercase">
                                 {{ $atributo }}
@@ -28,7 +28,7 @@
             @endforeach
         </tr>
         @if ($loop->last)
-                </tbody>
+            </tbody>
             </table>
         @endif
     @empty
