@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ClienteController extends Controller
 {
@@ -26,7 +28,15 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            Cliente::create($request->all());
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', $e->getMessage());
+        }
+        return $this->index();
     }
 
     /**
@@ -43,7 +53,18 @@ class ClienteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return $this->comprobarContrasenia($request);
+        DB::beginTransaction();
+        try {
+            $cliente = Cliente::findOrFail($id);
+            $cliente->update($request->all());
+            $cliente->save();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', $e->getMessage());
+        }
+        return $this->index();
     }
 
     /**
@@ -51,6 +72,39 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        DB::beginTransaction();
+        try {
+            $cliente = Cliente::findOrFail($id);
+            $cliente->delete();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', $e->getMessage());
+        }
+        return $this->index();
+    }
+
+    public function obtenerDatosBasicos()
+    {
+        $clientes = Cliente::all()->toArray();
+        $atributos = Cliente::getAtributos();
+
+        return [
+            'clientes' => $clientes,
+            'atributos' => $atributos,
+            'ruta' => 'clientes'
+        ];
+    }
+
+    //No se si funciona
+    private function comprobarContrasenia(Request $request)
+    {
+        Validator::make($request->all(), [
+            'password' => ['password', 'string' ,'min:8', 'confirmed'],
+        ],[
+            'password'=> 'Error en la contrasenia',
+            'password.confirmed'=> 'Error en la contrasenia',
+        ]);
     }
 }

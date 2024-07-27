@@ -1,6 +1,7 @@
 <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+    <link rel="stylesheet" href="{{ asset('css/NavBar.css') }}">
+    <nav class="navbar navbar-expand-lg shadow-lg">
+        <div class="container-fluid fw-bold">
             <a class="navbar-brand me-4 ms-3" href="#">Autentificacion</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBar"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,7 +10,7 @@
             <div class="collapse navbar-collapse" id="navBar">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('usuarios.index') }}">Usuarios</a>
@@ -32,10 +33,10 @@
                 </ul>
               </li> --}}
                 </ul>
-                <form class="d-flex">
+               {{--  <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                </form> --}}
             </div>
         </div>
     </nav>

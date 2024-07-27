@@ -12,13 +12,23 @@
                     </div>
                     <div class="card-body">
                         {{-- EMAIL --}}
-                        <div id="email">
-                            <h4 class="mb-3">Correo Electrónico</h4>
-                            <div class="col-4 col">
-                                <input type="email" name="email" class="form-control" placeholder="Email"
-                                    value="{{ $cliente->email }}">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div id="email">
+                                    <h4 class="mb-3">Correo Electrónico</h4>
+                                    <input type="email" name="email" class="form-control" placeholder="Email"
+                                        value="{{ $cliente->email }}">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div id="razon_social">
+                                    <h4 class="mb-3">Razon Social</h4>
+                                    <input type="text" name="razon_social" class="form-control"
+                                        placeholder="Razon social" value="{{ $cliente->razon_social }}">
+                                </div>
                             </div>
                         </div>
+
 
                         {{-- Contraseniasl --}}
                         <div id="password" class="mt-3">
@@ -76,27 +86,17 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
+
                 </div>
-
-                {{-- Segunda carta --}}
-                <div class="row">
-                    <div class="col-5">
-
-                        <div class="card mt-5">
-                            <div class="card-body">
-                                <input type="submit" class="btn btn-success border-dark text-dark px-5 shadow-lg" value="Save">
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-auto">
+                    <x-botones-component :modelo="$cliente" :ruta="'clientes'" />
                 </div>
-
-
             </div>
-        </div>
+
+            {{-- Segunda carta --}}
+            {{-- Guardados --}}
+            
 
         </div>
     @endif
