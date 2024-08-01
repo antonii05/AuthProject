@@ -30,11 +30,15 @@ class ClienteController extends Controller
     {
         DB::beginTransaction();
         try {
-            Cliente::create($request->all());
+            $this->validarCreacion($request->all());
+            $cliente = new Cliente($request->all());
+            $cliente->save();
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', $e->getMessage());
+            return $e->getMessage();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return $e->errors();
         }
         return $this->index();
     }
@@ -95,14 +99,35 @@ class ClienteController extends Controller
         ];
     }
 
-    //No se si funciona
-    private function comprobarContrasenia(Request $request)
+    public function crear(Request $request)
     {
-        Validator::make($request->all(), [
-            'password' => ['password', 'string' ,'min:8', 'confirmed'],
-        ],[
-            'password'=> 'Error en la contrasenia',
-            'password.confirmed'=> 'Error en la contrasenia',
-        ]);
+        $cliente = new Cliente();
+        $cliente->activo = true;
+        return view('pages.details.ClienteDetail', ['cliente' => $cliente]);
+    }
+
+    private function validarCreacion(array $data)
+    {
+        return Validator::make(
+            $data,
+            [
+                'email' => ['email', 'unique:clientes'],
+                'nombre_fiscal' => ['string'],
+                'nif' => ['string', 'min:9', 'max:9'],
+                'pais' => ['string'],
+                'provincia' => ['string'],
+            ],
+            [
+                'email' => 'Falta el campo correo electronico',
+                'email.unique' => 'Ese correo electrónico ya existe',
+                'nombre_fiscal' => 'Falta el nombre fiscal',
+                'nif' => 'Falta el NIF',
+                'nif.min' => 'El nix debe de tener 9 Digitos caracteres',
+                'nif.max' => 'El nix debe de tener 9 Digitos caracteres',
+                'pais' => 'Falta el campo Pais',
+                'provincia' => 'Falta el campo Provincia',
+
+            ]
+        )->validate();
     }
 }

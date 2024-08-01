@@ -13,6 +13,7 @@ Route::get('/', function () {
 //Controladores
 Route::resource('usuarios', UserController::class);
 Route::resource('clientes', ClienteController::class);
+Route::post('/clientes/crear', [ClienteController::class, 'crear'])->name('clientes.crear');
 Route::resource('productos', ProductoController::class);
 
 /* AUTHENTICATION */
