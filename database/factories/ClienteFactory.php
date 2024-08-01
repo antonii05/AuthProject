@@ -24,8 +24,9 @@ class ClienteFactory extends Factory
         return [
             'nombre_fiscal' => fake()->company(),
             'email' => fake()->unique()->safeEmail(),
-            'password' => Hash::make(fake()->unique()->password()),
             'nif' => $this->generarDNI(),
+            'direccion' => fake()->streetAddress(),
+            'codigo_postal' => fake()->postcode(),
             'pais' => fake()->country(),
             'provincia' => fake()->randomElement($this->provincias),
             'activo' => rand(0, 1),
