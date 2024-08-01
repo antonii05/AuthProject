@@ -53,7 +53,6 @@ class ClienteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return $this->comprobarContrasenia($request);
         DB::beginTransaction();
         try {
             $cliente = Cliente::findOrFail($id);
@@ -72,7 +71,6 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
-
         DB::beginTransaction();
         try {
             $cliente = Cliente::findOrFail($id);

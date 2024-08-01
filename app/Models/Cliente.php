@@ -16,8 +16,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $nombre_fiscal
  * @property string $email
- * @property string $password
  * @property string $nif
+ * @property string|null $direccion
+ * @property int|null $codigo_postal
  * @property string $pais
  * @property string $provincia
  * @property bool|null $activo
@@ -30,22 +31,19 @@ class Cliente extends Model
 {
 
 	use HasFactory;
-
 	protected $table = 'clientes';
 
 	protected $casts = [
+		'codigo_postal' => 'int',
 		'activo' => 'bool'
-	];
-
-	protected $hidden = [
-		'password'
 	];
 
 	protected $fillable = [
 		'nombre_fiscal',
 		'email',
-		'password',
 		'nif',
+		'direccion',
+		'codigo_postal',
 		'pais',
 		'provincia',
 		'activo'
@@ -58,6 +56,8 @@ class Cliente extends Model
 			'nombre_fiscal',
 			'email',
 			'nif',
+			'direccion',
+			'codigo_postal',
 			'pais',
 			'provincia',
 			'activo'
