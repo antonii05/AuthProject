@@ -37,17 +37,18 @@ input::placeholder {
     border-radius: 7px;
 }
 
-input.form-check-input:checked{
+input.form-check-input:checked {
     background-color: #ba70cc;
     border: 2px solid black;
 }
 
 /* Estilos para las cartas */
-.card{
+.card {
     background-color: #b980c7;
     border: 2px solid black;
 }
 
-.card-body,.card-header{
+.card-body,
+.card-header {
     background-color: #b980c7;
 }

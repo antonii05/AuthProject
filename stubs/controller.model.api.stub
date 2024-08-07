@@ -2,58 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\{{ Model }};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class {{ nameController}} extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $usuarios = Usuario::all();
-        $modelo = Usuario::getAtributos();
+        $item = {{ Model }}::all();
+        $modelo = {{ Model }}::getAtributos();
         return view("pages.UserView", [
-            'usuarios' => $usuarios,
+            'item' => $item,
             'atributos' => $modelo,
-            'ruta' => 'usuarios',
+            'ruta' => 'item',
         ]);
     }
 
+   
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        
         DB::beginTransaction();
         try {
-            $usuario = new Usuario($request->all());
-            $usuario->save();
+            //code...
             DB::commit();
         } catch (\Exception $error) {
             DB::rollBack();
         }
         return $this->index();
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $usuario = Usuario::findOrFail($id);
-        return view('pages.details.UsuarioDetail', ['usuario' => $usuario]);
+        return $id;
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-
         DB::beginTransaction();
         try {
             //code...
@@ -63,13 +62,13 @@ class UserController extends Controller
         }
         return $this->index();
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-
         DB::beginTransaction();
         try {
             //code...
@@ -80,8 +79,10 @@ class UserController extends Controller
         return $this->index();
     }
 
-    public function crear()
+
+    public function crear(Request $request)
     {
-        return view('pages.details.usuarioDetail', ['usuario' => new Usuario()]);
+        ${{modelo}} = new {{ Model }}();
+        return view('pages.details.{{pageDetail}}', ['{{modelo}}' => ${{item}}]);
     }
 }
