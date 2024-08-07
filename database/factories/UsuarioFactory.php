@@ -24,6 +24,7 @@ class UsuarioFactory extends Factory
     {
         return [
             'nombre' => fake()->name(),
+            'apellidos'=> fake()->lastName(),
             'edad' => rand(12,74),
             'dni' => $this->generarDNI(),
             'email' => fake()->unique()->safeEmail(),

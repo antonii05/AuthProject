@@ -28,13 +28,15 @@
 
                             {{-- EMAIL --}}
                             <div class="row">
+
                                 <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div id="email">
-                                        <h4 class="mb-3">Correo Electrónico</h4>
-                                        <input type="email" name="email" class="form-control"
-                                            placeholder="Correo electrónico" value="{{ $usuario->email }}">
+                                    <div id="apellidos">
+                                        <h4 class="mb-3">Nombre</h4>
+                                        <input type="text" name="apellidos" class="form-control" placeholder="Apellidos"
+                                            value="{{ $usuario->apellidos }}">
                                     </div>
                                 </div>
+
                                 <div class="col">
                                     <div id="nombre">
                                         <h4 class="mb-3">Nombre</h4>
@@ -44,57 +46,79 @@
                                 </div>
                             </div>
 
-                            {{-- Direcciones --}}
-                            {{-- <div class="mt-3">
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-12 col-sm-12">
-                                        <h4 class="mb-3">Dirección</h4>
-                                        <input type="text" name="direccion" class="form-control" placeholder="Direccion"
-                                            value="{{ $usuario->direccion }}">
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-12 col-sm-12">
-                                        <h4 class="mb-3">Código Postal</h4>
-                                        <input type="number" name="codigo_postal" class="form-control"
-                                            placeholder="Codigo Postal" value="{{ $usuario->codigo_postal }}">
-                                    </div>
-                                </div>
-                            </div> --}}
-
-                            {{-- DNI y rol --}}
-                            <div class="mt-3">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-12 col-sm-12">
-                                        <h4 class="mb-3">NIF</h4>
-                                        <input type="text" name="dni" class="form-control" placeholder="NIF"
-                                            value="{{ $usuario->dni }}">
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-12 col-sm-12">
-                                        <h4 class="mb-3">Rol</h4>
-                                        <input type="text" name="rol" class="form-control" placeholder="Rol en uso"
-                                            value="{{ $usuario->rol }}">
+                            {{-- Correo Electronico --}}
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <div id="email">
+                                        <h4 class="mb-3">Correo Electrónico</h4>
+                                        <input type="email" name="email" class="form-control"
+                                            placeholder="Correo electrónico" value="{{ $usuario->email }}">
                                     </div>
                                 </div>
                             </div>
 
-                            {{-- Provincia y activo --}}
-                            <div class="row mt-3">
-                                <div class="col-lg-6 col-md-12 col-sm-12 col">
-                                    <div class="col-4">
-                                        <h4 class="mb-3">Contraseña</h4>
-                                        <input type="text" name="password" class="form-control" placeholder="Contraseña"
-                                            value="{{ $usuario->password }}">
+
+                            {{-- BOTONES --}}
+                            <p class="d-inline-flex gap-1 mt-4">
+                                <button class="btn btn-primary fw-bold text-dark border-dark border-3 mx-2" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    Más Opciones
+                                </button>
+
+                                <button class="btn btn-primary fw-bold text-dark border-dark border-3 mx-2" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    Abrir opciones de Seguridad
+                                </button>
+                            </p>
+
+                            {{-- Collapse 1 --}}
+                            <div class="collapse" id="collapse1">
+
+                                <div class="row justify-content-center">
+                                    {{-- DNI y rol --}}
+                                    <div class="mt-3">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                <h4 class="mb-3">NIF</h4>
+                                                <input type="text" name="dni" class="form-control" placeholder="NIF"
+                                                    value="{{ $usuario->dni }}">
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                <h4 class="mb-3">Rol</h4>
+                                                <input type="number" name="rol" class="form-control"
+                                                    placeholder="Rol en uso" value="{{ $usuario->rol }}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            {{-- Collapse 2  --}}
+                            <div class="collapse mt-3" id="collapse2">
+
+                                <div class="row mt-2">
+                                    <div class="row">
+                                        <div class="col-3 col">
+                                            <h4 class="mb-3">Contraseña</h4>
+                                            <input type="text" name="password" class="form-control"
+                                                placeholder="Contraseña" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-3 col">
+                                            <h4 class="mb-3">Repetir Contraseña</h4>
+                                            <input type="text" name="password_confirmed" class="form-control"
+                                                placeholder="Repita la contraseña" value="">
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-md-12 col-sm-12 col">
-                                    <div class="col-4">
-                                        <h4 class="mb-3">Repetir Contraseña</h4>
-                                        <input type="text" name="password_confirmed" class="form-control"
-                                            placeholder="Repita la contraseña" value="{{ $usuario->password }}">
-                                    </div>
-                                </div>
                             </div>
 
                             {{-- Botones --}}

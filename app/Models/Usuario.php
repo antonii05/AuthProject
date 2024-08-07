@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property string $nombre
+ * @property string $apellidos
  * @property int|null $edad
  * @property string|null $dni
  * @property string $email
@@ -30,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
 class Usuario extends Model
 {
 	use HasFactory;
+	
 	protected $table = 'usuarios';
 
 	protected $casts = [
@@ -45,6 +47,7 @@ class Usuario extends Model
 
 	protected $fillable = [
 		'nombre',
+		'apellidos',
 		'edad',
 		'dni',
 		'email',
@@ -53,11 +56,13 @@ class Usuario extends Model
 		'rol',
 		'remember_token'
 	];
+
 	public static function getAtributos(): array
 	{
 		return [
 			'id',
 			'nombre',
+			'apellidos',
 			'edad',
 			'dni',
 			'email',
