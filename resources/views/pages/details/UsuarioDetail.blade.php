@@ -14,7 +14,7 @@
                             <h1 class="mb-3">Nuevo Usuario</h1>
                         @endif
                     </div>
-                    <div class="card-body">
+                    <div class="card-body mb-5">
                         {{-- Formulario --}}
                         <form
                             action="{{ isset($usuario->id) ? route('usuarios.update', $usuario->id) : route('usuarios.store') }}"
@@ -30,20 +30,20 @@
                             <div class="row">
 
                                 <div class="col-lg-6 col-md-12 col-sm-12">
-                                    <div id="apellidos">
+                                    <div id="nombre">
                                         <h4 class="mb-3">Nombre</h4>
+                                        <input type="text" name="nombre" class="form-control" placeholder="Nombre"
+                                        value="{{ $usuario->nombre }}">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div id="apellidos">
+                                        <h4 class="mb-3">Apellidos</h4>
                                         <input type="text" name="apellidos" class="form-control" placeholder="Apellidos"
                                             value="{{ $usuario->apellidos }}">
                                     </div>
                                 </div>
 
-                                <div class="col">
-                                    <div id="nombre">
-                                        <h4 class="mb-3">Nombre</h4>
-                                        <input type="text" name="nombre" class="form-control" placeholder="Nombre"
-                                            value="{{ $usuario->nombre }}">
-                                    </div>
-                                </div>
                             </div>
 
                             {{-- Correo Electronico --}}
@@ -105,15 +105,15 @@
                                     <div class="row">
                                         <div class="col-3 col">
                                             <h4 class="mb-3">Contraseña</h4>
-                                            <input type="text" name="password" class="form-control"
+                                            <input type="password" name="password" class="form-control"
                                                 placeholder="Contraseña" value="">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-3 col">
-                                            <h4 class="mb-3">Repetir Contraseña</h4>
-                                            <input type="text" name="password_confirmed" class="form-control"
+                                            <h4 class="my-3">Repetir Contraseña</h4>
+                                            <input type="password" name="password_confirmed" class="form-control"
                                                 placeholder="Repita la contraseña" value="">
                                         </div>
                                     </div>
