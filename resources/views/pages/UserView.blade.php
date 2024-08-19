@@ -11,7 +11,7 @@
                 <form action="{{ route('usuario.nuevo') }}" method="post">
                     @csrf
                     @method('POST')
-                    <button class="btn btn-primary my-4" type="submit">Nuevo Usuario</button>
+                    <button class="btn btn-primary fw-bold text-dark border-dark my-4" type="submit">Nuevo Usuario</button>
                 </form>
             </div>
         </div>

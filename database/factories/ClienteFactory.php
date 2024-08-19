@@ -26,7 +26,7 @@ class ClienteFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'nif' => $this->generarDNI(),
             'direccion' => fake()->streetAddress(),
-            'codigo_postal' => fake()->postcode(),
+            'codigo_postal' => rand(11111,99999),
             'pais' => fake()->country(),
             'provincia' => fake()->randomElement($this->provincias),
             'activo' => rand(0, 1),
