@@ -11,7 +11,7 @@
                 <form action="{{ route($ruta .'.nuevo') }}" method="post">
                     @csrf
                     @method('POST')
-                    <button class="btn btn-primary fw-bold text-dark border-dark my-4" type="submit">Crear Producto</button>
+                    <button class="btn btn-primary fw-bold text-dark border-dark my-4 px-5" type="submit">Crear Producto</button>
                 </form>
             </div>
         </div>

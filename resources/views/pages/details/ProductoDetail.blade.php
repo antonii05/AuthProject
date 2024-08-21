@@ -10,6 +10,11 @@
                         <div class="card-header">
                             <h1 class="mb-3"> {{ 'Producto: ' . $producto->nombre_pedido }}</h1>
                         </div>
+                    @else
+                    <div class="card-header my-2">
+                        <h4>Producto</h4>
+                        <input type="text" name="nombre_pedido" class="form-control mb-4" placeholder="Nombre del producto">
+                    </div>
                     @endif
                     <div class="card-body">
                         {{-- Formulario --}}

@@ -30,7 +30,8 @@ class ProductoController extends Controller
     {
         DB::beginTransaction();
         try {
-            //code...
+            $producto = new Producto($request->all());
+            $producto->save();
             DB::commit();
         } catch (\Exception $error) {
             DB::rollBack();
@@ -56,7 +57,9 @@ class ProductoController extends Controller
     {
         DB::beginTransaction();
         try {
-            //code...
+            $producto = Producto::findOrFail($id);
+            $producto->update($request->all());
+            $producto->save();
             DB::commit();
         } catch (\Exception $error) {
             DB::rollBack();
@@ -72,7 +75,7 @@ class ProductoController extends Controller
     {
         DB::beginTransaction();
         try {
-            //code...
+            Producto::findOrFail($id)->delete();
             DB::commit();
         } catch (\Exception $error) {
             DB::rollBack();
