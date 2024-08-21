@@ -7,14 +7,22 @@
 
                 {{-- primera carta --}}
                 <div class="card mt-5">
-                    <div class="card-header">
-                        <h1 class="mb-3"> Cliente: {{ $cliente->nombre_fiscal }}</h1>
-                    </div>
+                    @if (isset($cliente->id))
+                        <div class="card-header">
+                            <h1 class="mb-3"> {{ 'Cliente: ' . $cliente->nombre_fiscal }}</h1>
+                        </div>
+                    @endif
                     <div class="card-body">
-                        {{-- Formulario de actualización --}}
-                        <form action="{{ route('clientes.update', $cliente->id) }}" method="POST">
+                        {{-- Formulario --}}
+                        <form
+                            action="{{ isset($cliente->id) ? route('clientes.update', $cliente->id) : route('clientes.store') }}"
+                            method="POST">
                             @csrf
-                            @method('PUT')
+                            @if (isset($cliente->id))
+                                @method('PUT')
+                            @else
+                                @method('POST')
+                            @endif
 
                             {{-- EMAIL --}}
                             <div class="row">
@@ -91,23 +99,25 @@
                             {{-- Botones --}}
                             <div class="mt-5">
                                 <button type="submit"
-                                    class="btn btn-warning border-dark text-dark fw-bold px-5 shadow-lg">Actualizar</button>
+                                    class="btn btn-{{ isset($cliente->id) ? 'warning' : 'success' }} border-dark text-dark fw-bold px-5 shadow-lg">
+                                    {{ isset($cliente->id) ? 'Actualizar' : 'Guardar' }}
+                                </button>
                             </div>
                         </form>
-                        <div class="mt-2">
 
-                            <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="btn btn-danger border-dark text-dark fw-bold px-5 shadow-lg">Eliminar</button>
-                            </form>
-                        </div>
+                        @if (isset($cliente->id))
+                            <div class="mt-2">
+                                <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST"
+                                    class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="btn btn-danger border-dark text-dark fw-bold px-5 shadow-lg">Eliminar</button>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 </div>
-
-
-
             </div>
         </div>
     @endif
