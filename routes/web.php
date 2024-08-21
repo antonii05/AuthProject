@@ -14,11 +14,13 @@ Route::get('/', function () {
 Route::resource('usuarios', UserController::class);
 Route::post('/usuarios/nuevo', [UserController::class, 'crear'])->name('usuario.nuevo');
 
+//Clientes
 Route::resource('clientes', ClienteController::class);
-
-
 Route::post('/clientes/crear', [ClienteController::class, 'crear'])->name('clientes.crear');
+
+//Productos
 Route::resource('productos', ProductoController::class);
+Route::post('/productos/nuevo', [ProductoController::class, 'crear'])->name('productos.nuevo');
 
 /* AUTHENTICATION */
 Route::prefix('auth')->group(function () {
