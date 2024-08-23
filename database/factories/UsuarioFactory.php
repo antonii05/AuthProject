@@ -5,11 +5,10 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Usuario>
  */
-class UserFactory extends Factory
+class UsuarioFactory extends Factory
 {
     /**
      * The current password being used by the factory.
@@ -24,11 +23,15 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'nombre' => fake()->name(),
+            'apellidos'=> fake()->lastName(),
+            'edad' => rand(12,74),
+            'dni' => $this->generarDNI(),
             'email' => fake()->unique()->safeEmail(),
+            'password'=> Hash::make(fake()->password),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'rol' => rand(1,6),
         ];
     }
 
@@ -41,4 +44,22 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    private function generarDNI(): string
+    {
+        // Generar un número aleatorio de 8 dígitos
+        $numero = mt_rand(10000000, 99999999);
+
+        // Calcular la letra de control
+        $letras = 'TRWAGMYFPDXBNJZSQVHLCKE';
+        $letra = $letras[$numero % 23];
+
+        // Concatenar el número y la letra
+        $dni = $numero . $letra;
+
+        return $dni;
+    } 
 }
+
+
+

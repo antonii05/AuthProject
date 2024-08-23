@@ -1,0 +1,54 @@
+/* ESTILOS POR DEFAULT */
+/* Se utiliza para generar divs centrados  */
+
+/* Creado en AuthView */
+.full-height {
+    height: 100vh;
+}
+
+body {
+    background-color: #bb9ac3;
+}
+
+input.form-control,
+input.form-control:disabled,
+textarea.form-control,
+select.form-select,
+textarea.form-control:focus,
+input.form-control:focus {
+    background-color: #94759c;
+    border: 1.5px solid black;
+    font-weight: bold;
+}
+
+input::placeholder {
+    font-weight: bold;
+}
+
+/* Estilos para los botones de tipo submit con las clase BTN */
+.boton {
+    background: rgb(187, 154, 195);
+    background: linear-gradient(
+        180deg,
+        rgba(187, 154, 195, 1) 0%,
+        rgba(192, 111, 212, 1) 100%
+    );
+    border: 2px solid black;
+    border-radius: 7px;
+}
+
+input.form-check-input:checked {
+    background-color: #ba70cc;
+    border: 2px solid black;
+}
+
+/* Estilos para las cartas */
+.card {
+    background-color: #b980c7;
+    border: 2px solid black;
+}
+
+.card-body,
+.card-header {
+    background-color: #b980c7;
+}
