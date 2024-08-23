@@ -3,16 +3,14 @@
 @section('body')
     <div class="mt-4">
 
-        <h1 class="mb-4">Listado de clientes </h1>
-
         {{-- Listado --}}
-        <div class="row my-3 d-flex justify-content-end">
-            <div class="col-3">
-                <form action="{{ route('clientes.crear') }}" method="POST">
+        <div class="row">
+            <h1 class="mb-4">Listado de clientes </h1>
+            <div class="justify-content-end text-end">
+                <form action="{{ route('clientes.crear') }}" method="post">
                     @csrf
                     @method('POST')
-                    <button type="submit" class="btn btn-primary border-dark text-dark fw-bold px-5 shadow-lg ">Crear nuevo
-                        cliente</button>
+                    <button class="btn btn-primary fw-bold text-dark border-dark my-4 px-5" type="submit">Nuevo Cliente</button>
                 </form>
             </div>
         </div>
