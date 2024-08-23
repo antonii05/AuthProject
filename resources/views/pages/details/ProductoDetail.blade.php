@@ -6,16 +6,7 @@
 
                 {{-- primera carta --}}
                 <div class="card mt-5">
-                    @if (isset($producto->id))
-                        <div class="card-header">
-                            <h1 class="mb-3"> {{ 'Producto: ' . $producto->nombre_pedido }}</h1>
-                        </div>
-                    @else
-                    <div class="card-header my-2">
-                        <h4>Producto</h4>
-                        <input type="text" name="nombre_pedido" class="form-control mb-4" placeholder="Nombre del producto">
-                    </div>
-                    @endif
+
                     <div class="card-body">
                         {{-- Formulario --}}
                         <form
@@ -27,7 +18,22 @@
                             @else
                                 @method('POST')
                             @endif
-                            {{-- EMAIL --}}
+
+                            {{-- NOMBRE --}}
+
+                            @if (isset($producto->id))
+                                <div class="card-header">
+                                    <h1 class="mb-3"> {{ 'Producto: ' . $producto->nombre_pedido }}</h1>
+                                </div>
+                            @else
+                                <div class="card-header my-2">
+                                    <h4>Producto</h4>
+                                    <input type="text" name="nombre_pedido" class="form-control mb-4"
+                                        placeholder="Nombre del producto" value="{{ $producto->nombre_pedido }}">
+                                </div>
+                            @endif
+
+                            {{-- Descripcion --}}
                             <div class="row">
                                 <div class="col-lg-6 col-md-12 col-sm-12">
                                     <div id="email" class="col">
@@ -35,8 +41,9 @@
                                         <textarea name="descripcion" id="descripcion" class="form-control text-break">{{ $producto->descripcion }}</textarea>
                                     </div>
                                 </div>
+                                {{-- Precio --}}
                                 <div class="col">
-                                    <div id="nombre_fiscal">
+                                    <div>
                                         <h4 class="mb-3">Precio</h4>
                                         <input type="number" name="precio" class="form-control" placeholder="Precio"
                                             value="{{ $producto->precio }}">
