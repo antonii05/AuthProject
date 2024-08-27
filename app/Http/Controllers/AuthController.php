@@ -3,27 +3,77 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
 
 
     /**
-     * Summary of login
-     * @param \Illuminate\Http\Request $request
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    /* public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login']]);
+    } */
+
+    /**
+     * Get a JWT via given credentials.
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function login(Request $request)
     {
-        return $request;
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        if (!$token = JWTAuth::attempt($validator->validated())) {
+            return response()->json('Credenciales invalidas', 401); // Crear pagina para mostrar error
+        }
+
+        return $this->createNewToken($token);
     }
 
+    /**
+     * Get the authenticated User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me()
+    {
+        return response()->json(Auth::user());
+    }
 
     /**
-     * Summary of register
-     * @param \Illuminate\Http\Request $request
+     * Log the user out (Invalidate the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request)
+    public function logout()
     {
-        return $request;
+        Auth::logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+
+    private function createNewToken($token)
+    {
+        //Se devuelve el token y el usuario autenticado
+        return view('HomeView', [
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'exp' => config('jwt.ttl'),
+            'user' => Auth::user(),
+        ]);
     }
 }
