@@ -23,18 +23,22 @@ Route::prefix('auth')->group(function () {
 });
 
 //Controladores
-Route::resource('usuarios', UserController::class);
-Route::post('/usuarios/nuevo', [UserController::class, 'crear'])->name('usuario.nuevo');
+Route::middleware(JWTMiddleware::class)->group(function () {
+    /* usuarios */
+    Route::resource('usuarios', UserController::class);
+    Route::post('/usuarios/nuevo', [UserController::class, 'crear'])->name('usuario.nuevo');
 
-//Clientes
-Route::resource('clientes', ClienteController::class);
-Route::post('/clientes/crear', [ClienteController::class, 'crear'])->name('clientes.crear');
+    //Clientes
+    Route::resource('clientes', ClienteController::class);
+    Route::post('/clientes/crear', [ClienteController::class, 'crear'])->name('clientes.crear');
 
-//Productos
-Route::resource('productos', ProductoController::class);
-Route::post('/productos/nuevo', [ProductoController::class, 'crear'])->name('productos.nuevo');
+    //Productos
+    Route::resource('productos', ProductoController::class);
+    Route::post('/productos/nuevo', [ProductoController::class, 'crear'])->name('productos.nuevo');
 
+    /* Home */
+    Route::get('/home', function () {
+        return view('HomeView');
+    })->name('home');
 
-Route::get('/home', function () {
-    return view('HomeView');
-})->name('home');
+});

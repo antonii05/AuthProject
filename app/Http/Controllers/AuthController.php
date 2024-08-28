@@ -63,7 +63,7 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return view('auth.LoginView');
     }
 
     private function createNewToken($token)
