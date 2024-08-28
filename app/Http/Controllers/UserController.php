@@ -34,7 +34,7 @@ class UserController extends Controller
         DB::beginTransaction();
         try {
             $usuario = new Usuario($request->all());
-            if($request->password){
+            if ($request->password) {
                 $usuario->password = Hash::make($request->password);
             }
             $usuario->save();
@@ -58,11 +58,14 @@ class UserController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {   
+    {
         DB::beginTransaction();
         try {
             $usuario = Usuario::findOrFail($id);
             $usuario->update($request->all());
+            if ($request->password) {
+                $usuario->password = Hash::make($request->password);
+            }
             $usuario->save();
             DB::commit();
         } catch (\Exception $error) {
@@ -95,13 +98,14 @@ class UserController extends Controller
     /**
      * Funcion que realiza las validaciones
      */
-    private function validaciones(Request $request){
+    private function validaciones(Request $request)
+    {
         $validator = Validator::make($request->all(), [
-            'nombre' => ['string','required'],
-            'apellidos' => ['string','required'],
-            'email' => ['email','required'],
+            'nombre' => ['string', 'required'],
+            'apellidos' => ['string', 'required'],
+            'email' => ['email', 'required'],
             'password' => ['required'],
-            'password_confirmed' => ['required','same:password'],
+            'password_confirmed' => ['required', 'same:password'],
             [
                 'nombre.required' => 'El campo Nombre es obligatorio.',
                 'nombre.string' => 'El campo Nombre debe ser un texto.',
@@ -114,13 +118,13 @@ class UserController extends Controller
                 'password_confirmed.same' => 'Las contraseñas no coinciden'
             ]
         ]);
-        
-            // Verificar si la validación falla
-            if ($validator->fails()) {
-                // Si falla, redirige con los errores
-                return redirect()->back()
-                                 ->withErrors($validator)
-                                 ->withInput();
-            }
+
+        // Verificar si la validación falla
+        if ($validator->fails()) {
+            // Si falla, redirige con los errores
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
     }
 }
