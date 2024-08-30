@@ -13,9 +13,16 @@
 
 <body>
     @if ($hasMenu == true)
-        <x-menu-component />
+    <x-menu-component />
     @endif
+
+    
     <div class="container-fluid">
+
+        @if (isset($error))
+            <x-alert-component :texto="$error" :clases="'fw-bold justify-content-center'" />    
+        @endif
+
         <div class="mx-5">
             @yield('body')
         </div>

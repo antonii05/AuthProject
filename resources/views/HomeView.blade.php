@@ -2,7 +2,6 @@
 
 @section('body')
     <div class="container">
-
         <div class="row text-center justify-content-center ms-5">
             {{-- Primera Col --}}
             <div class="col-lg-4 col-md-12 col-sm-12 col mt-5">
