@@ -25,10 +25,9 @@
                             @else
                                 @method('POST')
                             @endif
-
+                            
                             {{-- EMAIL --}}
                             <div class="row">
-
                                 <div class="col-lg-6 col-md-12 col-sm-12">
                                     <div id="nombre">
                                         <h4 class="mb-3">Nombre</h4>

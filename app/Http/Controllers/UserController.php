@@ -13,7 +13,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public static function index()
     {
         $usuarios = Usuario::all();
         $modelo = Usuario::getAtributos();
@@ -27,10 +27,9 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public static function store(Request $request)
     {
-        $this->validaciones($request);
-
+        self::validaciones($request);
         DB::beginTransaction();
         try {
             $usuario = new Usuario($request->all());
@@ -42,7 +41,12 @@ class UserController extends Controller
         } catch (\Exception $error) {
             DB::rollBack();
         }
-        return $this->index();
+        
+        if($request->retorno){
+            return $usuario;
+        }else{
+            return self::index();
+        }
     }
 
     /**
@@ -98,7 +102,7 @@ class UserController extends Controller
     /**
      * Funcion que realiza las validaciones
      */
-    private function validaciones(Request $request)
+    private static function validaciones(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'nombre' => ['string', 'required'],

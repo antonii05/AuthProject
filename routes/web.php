@@ -15,30 +15,24 @@ Route::get('/', function () {
 Route::prefix('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
-
-    // Aplica el middleware JWTMiddleware solo a estas rutas
-    Route::middleware(JWTMiddleware::class)->group(function () {
-        Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
-    });
+    Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
+    Route::get('/registro', [AuthController::class, 'registro'])->name('auth.registro');
 });
 
 //Controladores
-Route::middleware(JWTMiddleware::class)->group(function () {
-    /* usuarios */
-    Route::resource('usuarios', UserController::class);
-    Route::post('/usuarios/nuevo', [UserController::class, 'crear'])->name('usuario.nuevo');
+/* usuarios */
+Route::resource('usuarios', UserController::class);
+Route::post('/usuarios/nuevo', [UserController::class, 'crear'])->name('usuario.nuevo');
 
-    //Clientes
-    Route::resource('clientes', ClienteController::class);
-    Route::post('/clientes/crear', [ClienteController::class, 'crear'])->name('clientes.crear');
+//Clientes
+Route::resource('clientes', ClienteController::class);
+Route::post('/clientes/crear', [ClienteController::class, 'crear'])->name('clientes.crear');
 
-    //Productos
-    Route::resource('productos', ProductoController::class);
-    Route::post('/productos/nuevo', [ProductoController::class, 'crear'])->name('productos.nuevo');
+//Productos
+Route::resource('productos', ProductoController::class);
+Route::post('/productos/nuevo', [ProductoController::class, 'crear'])->name('productos.nuevo');
 
-    /* Home */
-    Route::get('/home', function () {
-        return view('HomeView');
-    })->name('home');
-
-});
+/* Home */
+Route::get('/home', function () {
+    return view('HomeView');
+})->name('home');
