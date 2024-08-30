@@ -10,17 +10,6 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class AuthController extends Controller
 {
 
-
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
-    /* public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login']]);
-    } */
-
     /**
      * Get a JWT via given credentials.
      *
@@ -76,4 +65,20 @@ class AuthController extends Controller
             'user' => Auth::user(),
         ]);
     }
+    public function register(Request $request){
+        try {
+
+            UserController::store($request);
+
+            return $this->login($request);
+
+        } catch (\Exception $error) {
+            return response()->json($error->getMessage(), 500);
+        }
+    }
+    
+    public function registro(){
+        return view('auth.RegisterView');
+    }
+
 }
